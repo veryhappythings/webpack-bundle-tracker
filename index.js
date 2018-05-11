@@ -55,7 +55,7 @@ Plugin.prototype.apply = function(compiler) {
       }
 
       var chunks = {};
-      var isRelativeRoot = this.options.path && !path.isAbsolute(this.options.path)
+      var isRelativeRoot = self.options.path && !path.isAbsolute(self.options.path)
       stats.compilation.chunks.map(function(chunk){
         var files = chunk.files.map(function(file){
           var F = {name: file};
@@ -64,7 +64,7 @@ Plugin.prototype.apply = function(compiler) {
             F.publicPath = publicPath + file;
           }
           if (isRelativeRoot) {
-            F.path = path.relative(this.options.path, file);
+            F.path = path.relative(self.options.path, file);
           } else if (compiler.options.output.path) {
             F.path = path.join(compiler.options.output.path, file);
           }
